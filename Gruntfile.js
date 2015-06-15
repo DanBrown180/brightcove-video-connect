@@ -49,7 +49,7 @@ module.exports = function ( grunt ) {
 					},
 
 					files : {
-						'assets/css/brightcove_video_cloud.css' : 'assets/scss/brightcove_video_cloud.scss',
+						'assets/css/brightcove_video_connect.css' : 'assets/scss/brightcove_video_connect.scss',
 						'assets/css/brightcove_playlist.css' : 'assets/scss/brightcove_playlist.scss'
 					}
 

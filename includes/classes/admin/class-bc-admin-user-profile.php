@@ -11,7 +11,7 @@ class BC_Admin_User_Profile {
 	}
 
 	public function enqueue_styles() {
-		wp_enqueue_style( 'brightcove-video-cloud' );
+		wp_enqueue_style( 'brightcove-video-connect' );
 	}
 
 	public function brightcove_profile_ui( $user ) {

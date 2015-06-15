@@ -8,7 +8,7 @@
  *
  * @since   1.0.0
  *
- * @package Brightcove_Video_Cloud
+ * @package Brightcove_Video_Connect
  */
 abstract class BC_API {
 

@@ -1,6 +1,6 @@
 msgid ""
 msgstr ""
-"Project-Id-Version: Brightcove Video Cloud\n"
+"Project-Id-Version: Brightcove Video Connect\n"
 "POT-Creation-Date: 2015-03-02 14:38-0500\n"
 "PO-Revision-Date: 2015-03-02 14:38-0500\n"
 "Last-Translator: 10up <aaron.brazell@10up.com>\n"

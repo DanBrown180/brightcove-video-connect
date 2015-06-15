@@ -9,7 +9,7 @@
  * @since   1.0.0
  *
  * @link    https://docs.brightcove.com/en/video-cloud/player-management/reference/versions/v1/index.html
- * @package Brightcove_Video_Cloud
+ * @package Brightcove_Video_Connect
  */
 class BC_Player_Management_API extends BC_API {
 

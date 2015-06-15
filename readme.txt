@@ -1,11 +1,11 @@
-=== Brightcove Video Cloud ===
+=== Brightcove Video Connect ===
 
-Contributors:      10up, ivankk, technosailor, ChrisWiegman, tott, eduardmaghakyan, mattonomics, phoenixfireball, karinedo, foobuilder, helen, tlovett1, jonathantneal
+Contributors:      10up, ivankk, technosailor, ChrisWiegman, tott, eduardmaghakyan, mattonomics, phoenixfireball, karinedo, foobuilder, helen, tlovett1, jonathantneal, brightcove
 Donate link:       https://supporters.eff.org/donate
 Tags:              brightcove, 10up, videos, video
 Requires at least: 4.0
 Tested up to:      4.2
-Stable tag:        1.0.0
+Stable tag:        1.0.1
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -26,8 +26,8 @@ WordPress admin interface.
 
 = Manual Installation =
 
-1. Upload the entire `/brightcove-video-cloud` directory to the `/wp-content/plugins/` directory.
-2. Activate Brightcove Video Cloud through the 'Plugins' menu in WordPress.
+1. Upload the entire `/brightcove-video-connect` directory to the `/wp-content/plugins/` directory.
+2. Activate Brightcove Video Connect through the 'Plugins' menu in WordPress.
 
 == Usage ==
 
@@ -38,7 +38,7 @@ As a writer for my WordPress-powered publication, I  would like to upload a vide
 
 The process is pretty straightforward.
 
-During a typical editorial process, an article is created in the WordPress post (or page, or any other custom post type) edit screen. As core functionality, above the editor, but below the title, there is an "Add Media" Button. With Brightcove Video Cloud Enhanced active, there is also a "Brightcove Media" button available.
+During a typical editorial process, an article is created in the WordPress post (or page, or any other custom post type) edit screen. As core functionality, above the editor, but below the title, there is an "Add Media" Button. With Brightcove Video Connect active, there is also a "Brightcove Media" button available.
 
 **Screenshot 10**
 
@@ -167,7 +167,7 @@ button.
 13. Rendered post with videos inserted. What the user sees.
 14. Playlist tab in modal and playlists page containing 1. Sources filter, 2. Whether we hide empty playlists. 3. Search bar. 4. Select a playlist to open the details tab. 5. Playlist video count. 6. Edit Playlist button. 
 
-== Attribution ==
+== attribution ==
 All videos used in our demo are freely downloadable at https://vimeo.com
 These include:
 The Things about dogs
@@ -186,6 +186,10 @@ Sample Video
 http://sample-videos.com/
 
 == Changelog ==
+
+= 1.0.1 = 
+* Cleanup of references from /brightcove_video_cloud to /brightcove_video_connect.
+* Fix: Plugin deactivation wasn't working.
 
 = 1.0.0 =
 * First release

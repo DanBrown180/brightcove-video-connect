@@ -7,7 +7,7 @@
  *
  * @since   1.0.0
  *
- * @package Brightcove_Video_Cloud
+ * @package Brightcove_Video_Connect
  */
 
 if ( ! defined( 'WP_UNINSTALL_PLUGIN' ) || ! WP_UNINSTALL_PLUGIN ) {

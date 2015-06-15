@@ -8,7 +8,7 @@
  *
  * @since   1.0.0
  *
- * @package Brightcove_Video_Cloud
+ * @package Brightcove_Video_Connect
  */
 class BC_CMS_API extends BC_API {
 

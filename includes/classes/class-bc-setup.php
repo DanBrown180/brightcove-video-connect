@@ -215,8 +215,8 @@ class BC_Setup {
 
 		wp_enqueue_media();
 
-		wp_register_style( 'brightcove-video-cloud', esc_url( BRIGHTCOVE_URL . 'assets/css/brightcove_video_cloud.css' ), array() );
-		wp_enqueue_style( 'brightcove-video-cloud' );
+		wp_register_style( 'brightcove-video-connect', esc_url( BRIGHTCOVE_URL . 'assets/css/brightcove_video_connect.css' ), array() );
+		wp_enqueue_style( 'brightcove-video-connect' );
 	}
 
 	public static function frontend_enqueue_scripts() {
