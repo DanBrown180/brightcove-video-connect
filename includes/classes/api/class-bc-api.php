@@ -161,6 +161,8 @@ abstract class BC_API {
 			return $auth_header;
 		}
 
+		add_filter( 'http_request_timeout', array( $this, 'increase_http_timeout' ) );
+
 		$headers = array( 'Authorization' => $auth_header );
 
 		// All JSON_ methods are used to indicate that application/json is the content type
@@ -271,6 +273,14 @@ abstract class BC_API {
 
 		return $body;
 
+	}
+	/**
+	 * Increase the http timeout for API requests
+	 */
+ 	 
+	public function increase_http_timeout( $timeout ) {
+		$timeout += 5;
+		return $timeout;		
 	}
 
 	/**

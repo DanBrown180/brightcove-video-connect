@@ -5,7 +5,7 @@ Donate link:       https://supporters.eff.org/donate
 Tags:              brightcove, 10up, videos, video
 Requires at least: 4.0
 Tested up to:      4.2
-Stable tag:        1.0.1
+Stable tag:        1.0.2
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -186,6 +186,9 @@ Sample Video
 http://sample-videos.com/
 
 == Changelog ==
+
+= 1.0.2 =
+* Increasing HTTP timeout to fix sporadic issues when adding sources
 
 = 1.0.1 = 
 * Cleanup of references from /brightcove_video_cloud to /brightcove_video_connect.

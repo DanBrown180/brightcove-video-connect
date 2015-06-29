@@ -138,9 +138,20 @@ class BC_Accounts {
 
 		$is_valid_account = $this->is_valid_account( $account_id, $client_id, $client_secret, $account_name );
 
-		if ( is_wp_error( $is_valid_account ) ) {
-			return $is_valid_account->get_error_messages();
-		}
+		if ( is_array( $is_valid_account ) ) {
+			foreach ( $is_valid_account as $wp_error ) {
+				if ( is_wp_error( $wp_error ) ) {
+					BC_Utility::admin_notice_messages( array(
+						array(
+							'message' => $wp_error->get_error_message(),
+							'type'    => 'error'
+						)
+					) );
+				}
+			}
+
+			return false;
+ 		}
 
 		if ( true !== $is_valid_account ) {
 			if ( $cli ) {
