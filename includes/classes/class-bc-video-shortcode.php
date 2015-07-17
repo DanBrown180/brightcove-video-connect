@@ -23,8 +23,8 @@ class BC_Video_Shortcode {
 			'player_id'  => '',
 			'account_id' => '',
 			'video_id'   => '',
-			'height'     => 270,
-			'width'      => 480,
+			'height'     => 250,
+			'width'      => 500,
 		);
 
 		$atts = shortcode_atts( $defaults, $atts, 'bc_video' );
@@ -43,7 +43,7 @@ class BC_Video_Shortcode {
 	 *
 	 * @return string
 	 */
-	public static function player( $video_id, $account_id, $player_id, $width = 300, $height = 150 ) {
+	public static function player( $video_id, $account_id, $player_id, $width = 500, $height = 250 ) {
 
 		// Sanitize and Verify
 		$account_id = BC_Utility::sanitize_id( $account_id );
@@ -52,7 +52,19 @@ class BC_Video_Shortcode {
 		$height     = (int) $height;
 		$width      = (int) $width;
 
-		$html = '<!-- Start of Brightcove Player -->';
+		$html = '<div style="width: ' . $width . 'px; height: ' . $height . 'px">';
+
+		$html .= '<style>
+			.video-js {
+			    height: 100%;
+			    width: 100%;
+			}
+			.vjs-big-play-button {
+				display: none;
+			}
+			</style>';
+
+		$html .= '<!-- Start of Brightcove Player -->';
 		$html .= sprintf(
 			'<video data-account="%s" data-player="%s" data-embed="default" data-video-id="%s" class="video-js" controls></video>',
 			$account_id,
@@ -65,6 +77,8 @@ class BC_Video_Shortcode {
 			$player_id
 		);
 		$html .= '<!-- End of Brightcove Player -->';
+
+		$html .= '</div>';
 
 		return $html;
 	}

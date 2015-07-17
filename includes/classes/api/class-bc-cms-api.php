@@ -362,7 +362,16 @@ class BC_CMS_API extends BC_API {
 	 */
 	public function playlist_list() {
 
-		return $this->send_request( esc_url_raw( self::CMS_BASE_URL . $this->get_account_id() . '/playlists' ) );
+		$results = $this->send_request( esc_url_raw( self::CMS_BASE_URL . $this->get_account_id() . '/playlists' ) );
+
+		foreach ( $results as $index => $result ) {
+
+			$results[ $index ]['width']  = apply_filters( 'bv_playlist_default_width', 500 );
+			$results[ $index ]['height'] = apply_filters( 'bv_playlist_default_height', 250 );
+
+		}
+
+		return $results;
 
 	}
 
@@ -602,7 +611,16 @@ class BC_CMS_API extends BC_API {
 			self::CMS_BASE_URL . $this->get_account_id() . '/videos'
 		);
 
-		return $this->send_request( esc_url_raw( $url ) );
+		$results = $this->send_request( esc_url_raw( $url ) );
+
+		foreach ( $results as $index => $result ) {
+
+			$results[ $index ]['width']  = apply_filters( 'bv_video_default_width', 500 );
+			$results[ $index ]['height'] = apply_filters( 'bv_video_default_height', 250 );
+
+		}
+
+		return $results;
 
 	}
 

@@ -52,7 +52,7 @@ class BC_Admin_Media_API {
 		$updated_data = array();
 
 		// check if playlist or video data was sent
-		$fields = array( 'long_description', 'description', 'name', 'playlist_id', 'video_id', 'tags' );
+		$fields = array( 'long_description', 'description', 'name', 'playlist_id', 'video_id', 'tags', 'width', 'height' );
 		foreach ( $fields as $field ) {
 			$updated_data[ $field ] = isset( $_POST[ $field ] ) ? sanitize_text_field( $_POST[ $field ] ) : '';
 		}

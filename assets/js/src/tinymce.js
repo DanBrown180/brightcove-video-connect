@@ -28,7 +28,7 @@
         views.register('bc_video', {
             initialize: function () {
                 var self = this;
-                self.content = '<iframe src="//players.brightcove.net/' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.account_id) + '/default_default/index.html?videoId=' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.video_id) + '" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
+                self.content = '<iframe style="width: ' + self.shortcode.attrs.named.width + 'px; height: ' + self.shortcode.attrs.named.height + 'px;" src="//players.brightcove.net/' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.account_id) + '/default_default/index.html?videoId=' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.video_id) + '" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
                 // add allowfullscreen attribute to main iframe to allow video preview in full screen
                 if (typeof document.getElementById('content_ifr') !== 'undefined') {
                     document.getElementById('content_ifr').setAttribute('allowFullScreen', '');
@@ -43,7 +43,7 @@
             initialize: function () {
                 var self = this;
                 var player_id = bctiny.playlistEnabledPlayers[self.shortcode.attrs.named.account_id][0];
-                self.content = '<iframe src="//players.brightcove.net/' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.account_id) + '/' + player_id + '_default/index.html?playlistId=' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.playlist_id) + '" width="645" height="352" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
+                self.content = '<iframe style="width: ' + self.shortcode.attrs.named.width + 'px; height: ' + self.shortcode.attrs.named.height + 'px;" src="//players.brightcove.net/' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.account_id) + '/' + player_id + '_default/index.html?playlistId=' + utilities.bc_sanitize_ids(self.shortcode.attrs.named.playlist_id) + '" width="645" height="352" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
                 // add allowfullscreen attribute to main iframe to allow video preview in full screen
                 if (typeof document.getElementById('content_ifr') !== 'undefined') {
                     document.getElementById('content_ifr').setAttribute('allowFullScreen', '');
@@ -57,7 +57,7 @@
         views.register('bc_video', {
             View: {
                 initialize: function (options) {
-                    this.content = '<iframe src="//players.brightcove.net/' + bc_sanitize_ids(options.shortcode.attrs.named.account_id) + '/default_default/index.html?videoId=' + bc_sanitize_ids(options.shortcode.attrs.named.video_id) + '" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
+                    this.content = '<iframe style="width: ' + self.shortcode.attrs.named.width + 'px; height: ' + self.shortcode.attrs.named.height + 'px;" src="//players.brightcove.net/' + bc_sanitize_ids(options.shortcode.attrs.named.account_id) + '/default_default/index.html?videoId=' + bc_sanitize_ids(options.shortcode.attrs.named.video_id) + '" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
                     // add allowfullscreen attribute to main iframe to allow video preview in full screen
                     if (typeof document.getElementById('content_ifr') !== 'undefined') {
                         document.getElementById('content_ifr').setAttribute('allowFullScreen', '');
@@ -75,7 +75,7 @@
             View: {
                 initialize: function (options) {
                     var player_id = bctiny.playlistEnabledPlayers[options.shortcode.attrs.named.account_id][0];
-                    this.content = '<iframe src="//players.brightcove.net/' + utilities.bc_sanitize_ids(options.shortcode.attrs.named.account_id) + '/' + player_id + '_default/index.html?playlistId=' + utilities.bc_sanitize_ids(options.shortcode.attrs.named.playlist_id) + '" width="645" height="352" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
+                    this.content = '<iframe style="width: ' + self.shortcode.attrs.named.width + 'px; height: ' + self.shortcode.attrs.named.height + 'px;" src="//players.brightcove.net/' + utilities.bc_sanitize_ids(options.shortcode.attrs.named.account_id) + '/' + player_id + '_default/index.html?playlistId=' + utilities.bc_sanitize_ids(options.shortcode.attrs.named.playlist_id) + '" width="645" height="352" allowfullscreen webkitallowfullscreen mozallowfullscreen></iframe>';
                     // add allowfullscreen attribute to main iframe to allow video preview in full screen
                     if (typeof document.getElementById('content_ifr') !== 'undefined') {
                         document.getElementById('content_ifr').setAttribute('allowFullScreen', '');

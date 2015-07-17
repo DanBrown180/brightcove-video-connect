@@ -29,6 +29,8 @@ define(['jquery', 'underscore', 'backbone', 'views/brightcove-media-manager', 'v
             this.model.set('description', this.$el.find('.brightcove-description').val());
             this.model.set('long_description', this.$el.find('.brightcove-long-description').val());
             this.model.set('tags', this.$el.find('.brightcove-tags').val());
+            this.model.set('height', this.$el.find('.brightcove-height').val());
+            this.model.set('width', this.$el.find('.brightcove-width').val());
             this.model.set('mediaType', 'videos');
             this.model.save();
         },
