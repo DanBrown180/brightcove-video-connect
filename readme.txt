@@ -3,7 +3,7 @@
 Contributors:      10up, ivankk, technosailor, ChrisWiegman, tott, eduardmaghakyan, mattonomics, phoenixfireball, karinedo, foobuilder, helen, tlovett1, jonathantneal, brightcove
 Donate link:       https://supporters.eff.org/donate
 Tags:              brightcove, 10up, videos, video
-Requires at least: 4.0
+Requires at least: 4.2
 Tested up to:      4.3
 Stable tag:        1.0.3
 License:           GPLv2 or later
