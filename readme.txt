@@ -5,7 +5,7 @@ Donate link:       https://supporters.eff.org/donate
 Tags:              brightcove, 10up, videos, video
 Requires at least: 4.2
 Tested up to:      4.3
-Stable tag:        1.0.3
+Stable tag:        1.0.4
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -101,7 +101,7 @@ To leave the edit screen, click the **Back** button. You will be returned to the
 = I want to edit a playlist =
 N.B. If you want to create or delete a playlist, that can only be performed via the studio: http://videocloud.brightcove.com/
 
-Open Brightcove Menu > Playlists or 
+Open Brightcove Menu > Playlists or
 Edit Post Page > Brightcove Media Button > Playlists Tab
 Select the Playlist you wish to edit from the grid view. You can use the filters to search for it.
 With the playlist details visible, press the Edit Button to open the Edit View. - screenshot-16
@@ -113,7 +113,7 @@ Playlist Name can be changed via the text field at the top.
 No need to save anything as all changes are synchronized to Brightcove automatically.
 
 = I want to add an account =
-Create your API credentials via http://docs.brightcove.com/en/video-cloud/studio/managing-accounts/managing-api-credentials.html 
+Create your API credentials via http://docs.brightcove.com/en/video-cloud/studio/managing-accounts/managing-api-credentials.html
 Visit the settings page, Brightcove Menu > Settings.
 Input a memorable name to differentiate your source from all other sources.
 Input your API credentials and press the Check Credentials button.
@@ -156,7 +156,7 @@ button.
 2. 1-4 Brightcove account settings from https://videocloud.brightcove.com/admin/api We only support accounts with full read/write permissions. 5. Whether this should be the default account that we upload videos to.
 3. Confirmation of a valid account.
 4. 1. Videos in grid view. 2. Select video to open details sidebar. 3. Divider. 4. Thumbnail of video. 5. Toggle edit video mode. 6.  Toggle video preview mode. 7. Show videos of specific source. 8. Show videos uploaded in certain month. 9. Show videos of a specific tag. 10. Search. 11.  Add a new video.
-5. Modal Window, 1. Upload new files, 2. Current Tab, 3. Playlist Grid View.  4. Insert selected video as a shortcode into the post. 
+5. Modal Window, 1. Upload new files, 2. Current Tab, 3. Playlist Grid View.  4. Insert selected video as a shortcode into the post.
 6. Uploader supporting select or drag and drop for multiple video uploads.
 7. 1. Edit Source page, 1. Source name, 2. Account ID, 3. Make the source default
 8. 1. Metadata changes are reflected in row. 2. Hide empty play lists. 3. Search playlist. 4. Thumbnail of playlist. 5. Selected playlist to edit.
@@ -165,7 +165,7 @@ button.
 11. Post edit view in visual mode. 1. Processed shortcode rendered by Brightcove. 2. Video Edit to launch modal.
 12. Video preview from video grid modal.
 13. Rendered post with videos inserted. What the user sees.
-14. Playlist tab in modal and playlists page containing 1. Sources filter, 2. Whether we hide empty playlists. 3. Search bar. 4. Select a playlist to open the details tab. 5. Playlist video count. 6. Edit Playlist button. 
+14. Playlist tab in modal and playlists page containing 1. Sources filter, 2. Whether we hide empty playlists. 3. Search bar. 4. Select a playlist to open the details tab. 5. Playlist video count. 6. Edit Playlist button.
 
 == attribution ==
 All videos used in our demo are freely downloadable at https://vimeo.com
@@ -187,13 +187,16 @@ http://sample-videos.com/
 
 == Changelog ==
 
+= 1.0.4 =
+* Fix: Fixed a PHP Fatal error that could occur when the connection to the Brightcove API failed.
+
 = 1.0.3 =
 * Enhancement: Added ability to specify display size on video and playlist shortcodes.
 
 = 1.0.2 =
 * Increasing HTTP timeout to fix sporadic issues when adding sources
 
-= 1.0.1 = 
+= 1.0.1 =
 * Cleanup of references from /brightcove_video_cloud to /brightcove_video_connect.
 * Fix: Plugin deactivation wasn't working.
 
