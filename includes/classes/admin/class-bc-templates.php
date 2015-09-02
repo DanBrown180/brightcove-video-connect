@@ -41,9 +41,9 @@ class BC_Admin_Templates {
 						<span class="bc-name">{{data.name}}</span>
 						<span class="bc-updated">{{data.updated_at_readable}}</span>
 							<span class="row-actions">
-								<span class="video-move-up"><a href="#"><?php _e( '&uarr; Move up', 'brightcove' )?></a></span> |
-								<span class="video-move-down"><a href="#"><?php _e( '&darr; Move Down', 'brightcove' )?></a></span> |
-								<span class="trash"><a href="#"><?php _e( 'Remove', 'brightcove' )?></a></span>
+								<span class="video-move-up"><a href="#">&uarr; <?php esc_html_e( 'Move up', 'brightcove' )?></a></span> |
+								<span class="video-move-down"><a href="#">&darr; <?php esc_html_e( 'Move Down', 'brightcove' )?></a></span> |
+								<span class="trash"><a href="#"><?php esc_html_e( 'Remove', 'brightcove' )?></a></span>
 							</span>
 					</div>
 				</div>
@@ -67,7 +67,7 @@ class BC_Admin_Templates {
 				<div class="bc-info">
 					<span class="bc-name">{{data.name}}</span>
 					<span class="bc-updated">{{data.updated_at_readable}}</span>
-					<span class="row-actions"><span class="add-to-playlist"><a href="#" class="button action"><?php _e( 'Add to playlist', 'brightcove' )?></a></span></span>
+					<span class="row-actions"><span class="add-to-playlist"><a href="#" class="button action"><?php esc_html_e( 'Add to playlist', 'brightcove' )?></a></span></span>
 				</div>
 			</div>
 		</li>
@@ -77,9 +77,9 @@ class BC_Admin_Templates {
 		<script type="text/html" id="tmpl-brightcove-playlist-edit">
 			<div class="settings">
 				<label class="playlist-name">
-					<span class="name"><?php _e( 'Playlist Name', 'brightcove' )?></span>
+					<span class="name"><?php esc_html_e( 'Playlist Name', 'brightcove' )?></span>
 					<input type="text" class="brightcove-name" value="{{data.name}}" />
-					<a href="#" class="button button-primary button-large media-button brightcove back"><?php _e( 'Back', 'brightcove' ); ?></a>
+					<a href="#" class="button button-primary button-large media-button brightcove back"><?php esc_html_e( 'Back', 'brightcove' ); ?></a>
 					<span class="spinner is-active"></span>
 				</label>
 			</div>
@@ -99,40 +99,40 @@ class BC_Admin_Templates {
 		<script type="text/html" id="tmpl-brightcove-video-edit">
 			<div class="settings">
 				<label class="setting video-name">
-					<span class="name"><?php _e( 'Name', 'brightcove' )?></span>
+					<span class="name"><?php esc_html_e( 'Name', 'brightcove' )?></span>
 					<input type="text" class="brightcove-name" value="{{data.name}}" />
 				</label>
 				<label class="setting short-description">
-					<span class="name"><?php _e( 'Description', 'brightcove' )?></span>
+					<span class="name"><?php esc_html_e( 'Description', 'brightcove' )?></span>
 					<textarea class="brightcove-description">{{data.description}}</textarea>
 				</label>
 				<label class="setting long-description">
-					<span class="name"><?php _e( 'Long Description', 'brightcove' )?></span>
+					<span class="name"><?php esc_html_e( 'Long Description', 'brightcove' )?></span>
 					<textarea class="brightcove-long-description">{{data.long_description}}</textarea>
 
 				</label>
 				<label class="setting tags">
-					<span class="name"><?php _e( 'Tags', 'brightcove' )?></span>
+					<span class="name"><?php esc_html_e( 'Tags', 'brightcove' )?></span>
 					<input type="text" class="brightcove-tags" value="{{data.tags}}" />
 				</label>
 				<label class="setting width">
-					<span class="name"><?php _e( 'Display Width', 'brightcove' )?></span>
+					<span class="name"><?php esc_html_e( 'Display Width', 'brightcove' )?></span>
 					<input type="text" class="brightcove-width" value="{{data.width}}" />
 				</label>
 				<label class="setting height">
-					<span class="name"><?php _e( 'Display Height', 'brightcove' )?></span>
+					<span class="name"><?php esc_html_e( 'Display Height', 'brightcove' )?></span>
 					<input type="text" class="brightcove-height" value="{{data.height}}" />
 				</label>
 			</div>
 			<div class="brightcove brightcove-buttons">
 				<span class="delete-action">
-					<a href="#" class="brightcove delete"><?php _e( 'Delete', 'brightcove' ); ?></a>
+					<a href="#" class="brightcove delete"><?php esc_html_e( 'Delete', 'brightcove' ); ?></a>
 				</span>
 
 				<span class="more-actions">
 					<span class="spinner hidden"></span>
-					<a href="#" class="button button-secondary button-large media-button brightcove back"><?php _e( 'Back', 'brightcove' ); ?></a>
-					<a href="#" class="button button-primary button-large media-button brightcove save-sync"><?php _e( 'Save and Sync Changes', 'brightcove' ); ?></a>
+					<a href="#" class="button button-secondary button-large media-button brightcove back"><?php esc_html_e( 'Back', 'brightcove' ); ?></a>
+					<a href="#" class="button button-primary button-large media-button brightcove save-sync"><?php esc_html_e( 'Save and Sync Changes', 'brightcove' ); ?></a>
 				</span>
 			</div>
 		</script>
@@ -152,12 +152,12 @@ class BC_Admin_Templates {
                 <div class="media-frame mode-select wp-core-ui" id="__wp-uploader-id-0">
                   <div class="media-frame-title">
                     <h1>
-	                    <img class="bc-page-icon" src="<?php echo esc_url( BRIGHTCOVE_URL . 'images/admin/menu-icon.svg' ); ?>"> <?php _e( 'Brightcove', 'brightcove' ); ?>
+	                    <img class="bc-page-icon" src="<?php echo esc_url( BRIGHTCOVE_URL . 'images/admin/menu-icon.svg' ); ?>"> <?php esc_html_e( 'Brightcove', 'brightcove' ); ?>
                     </h1>
                   </div>
                   <div class="media-frame-router">
                     <div class="media-router">
-                      <a href="#" class="brightcove upload media-menu-item"><?php _e( 'Upload Files', 'brightcove' )?></a><a href="#" class="brightcove videos media-menu-item active"><?php _e( 'Videos', 'brightcove' )?></a><a href="#" class="brightcove playlists media-menu-item"><?php _e( 'Playlists', 'brightcove' )?></a>
+                      <a href="#" class="brightcove upload media-menu-item"><?php esc_html_e( 'Upload Files', 'brightcove' )?></a><a href="#" class="brightcove videos media-menu-item active"><?php esc_html_e( 'Videos', 'brightcove' )?></a><a href="#" class="brightcove playlists media-menu-item"><?php esc_html_e( 'Playlists', 'brightcove' )?></a>
                     </div>
                   </div>
                   <div class="media-frame-content">
@@ -167,7 +167,7 @@ class BC_Admin_Templates {
                       <div class="media-toolbar-secondary">
                         <div class="media-selection empty">
                           <div class="selection-info">
-                            <span class="count">0 selected</span> <a class="edit-selection" href="#"><?php _e( 'Edit Selection', 'brightcove' ); ?></a> <a class="clear-selection" href="#"><?php _e( 'Clear', 'brightcove' ); ?></a>
+                            <span class="count">0 selected</span> <a class="edit-selection" href="#"><?php esc_html_e( 'Edit Selection', 'brightcove' ); ?></a> <a class="clear-selection" href="#"><?php esc_html_e( 'Clear', 'brightcove' ); ?></a>
                           </div>
                           <div class="selection-view">
                             <ul tabindex="-1" class="attachments" id="__attachments-view-71"></ul>
@@ -175,7 +175,7 @@ class BC_Admin_Templates {
                         </div>
                       </div>
                       <div class="media-toolbar-primary search-form">
-                        <a href="#" class="button media-button button-primary button-large media-button-insert brightcove" disabled="disabled"><?php _e( 'Insert Into Post', 'brightcove' ); ?></a>
+                        <a href="#" class="button media-button button-primary button-large media-button-insert brightcove" disabled="disabled"><?php esc_html_e( 'Insert Into Post', 'brightcove' ); ?></a>
                       </div>
                     </div>
                   </div>
@@ -183,7 +183,7 @@ class BC_Admin_Templates {
                     <div class="uploader-window">
                       <div class="uploader-window-content">
                         <h3>
-	                        <?php _e( 'Drop files to upload', 'brightcove' ); ?>
+	                        <?php esc_html_e( 'Drop files to upload', 'brightcove' ); ?>
                         </h3>
                       </div>
                     </div>
@@ -209,17 +209,17 @@ class BC_Admin_Templates {
 					<table class="wp-list-table widefat">
 						<thead>
 							<tr>
-							<th><?php _e( 'File Name', 'brightcove' )?></th>
-							<th><?php _e( 'Size', 'brightcove' )?></th>
-							<th><?php _e( 'Source', 'brightcove' )?></th>
-							<th><?php _e( 'Progress', 'brightcove' )?></th>
+							<th><?php esc_html_e( 'File Name', 'brightcove' )?></th>
+							<th><?php esc_html_e( 'Size', 'brightcove' )?></th>
+							<th><?php esc_html_e( 'Source', 'brightcove' )?></th>
+							<th><?php esc_html_e( 'Progress', 'brightcove' )?></th>
 							</tr>
 						</thead>
 						<tbody class="brightcove-pending-uploads">
 						</tbody>
 					</table>
 					<br>
-					<button class="brightcove-start-upload button action"><?php _e( 'Start Upload', 'brightcove' ); ?></button>
+					<button class="brightcove-start-upload button action"><?php esc_html_e( 'Start Upload', 'brightcove' ); ?></button>
 				</div>
 			</div>
 			<div class="brightcove-messages"></div>
@@ -244,19 +244,19 @@ class BC_Admin_Templates {
 				} #>
 			<div class="settings">
 			<label class="file-name setting">
-				<span class="name"><?php _e( 'File Name', 'brightcove' )?></span>
+				<span class="name"><?php esc_html_e( 'File Name', 'brightcove' )?></span>
 				<span>{{data.fileName}}</span>
 			</label>
 			<label class="video-name setting">
-				<span class="name"><?php _e( 'Name', 'brightcove' )?></span>
+				<span class="name"><?php esc_html_e( 'Name', 'brightcove' )?></span>
 				<input type="text" class="brightcove-name" value="{{data.fileName}}"{{readOnly}} />
 			</label>
 			<label class="tags setting">
-				<span class="name"><?php _e( 'Tags', 'brightcove' )?></span>
+				<span class="name"><?php esc_html_e( 'Tags', 'brightcove' )?></span>
 				<input type="text" class="brightcove-tags" value="{{data.tags}}"{{readOnly}} />
 			</label>
 			<label class="account setting">
-				<span class="name"><?php _e( 'Source', 'brightcove' )?></span>
+				<span class="name"><?php esc_html_e( 'Source', 'brightcove' )?></span>
 				<select id="brightcove-media-source" class="brightcove-media-source"{{disabled}}>
 					<# _.each(data.accounts, function (account, hash) {
 						if (account.client_id === data.accounts[data.account].client_id) {
@@ -273,7 +273,7 @@ class BC_Admin_Templates {
 		<?php /* Used by views/upload-window.js */?>
 		<script type="text/html" id="tmpl-brightcove-uploader-window">
 			<div id="drop-target" class="uploader-window-content">
-				<h3><?php _e( 'Drop files to upload' ); ?></h3>
+				<h3><?php esc_html_e( 'Drop files to upload', 'brightcove' ); ?></h3>
 			</div>
 		</script>
 
@@ -282,12 +282,12 @@ class BC_Admin_Templates {
 		<script type="text/html" id="tmpl-brightcove-uploader-inline">
 			<div class="uploader-inline-content">
 				<?php if ( is_multisite() && ! is_upload_space_available() ) : ?>
-					<h3 class="upload-instructions"><?php _e( 'Upload Limit Exceeded' ); ?></h3>
+					<h3 class="upload-instructions"><?php esc_html_e( 'Upload Limit Exceeded', 'brightcove' ); ?></h3>
 				<?php else : ?>
 					<div class="upload-ui">
-						<h3 class="upload-instructions drop-instructions"><?php _e( 'Drop files anywhere to upload' ); ?></h3>
+						<h3 class="upload-instructions drop-instructions"><?php esc_html_e( 'Drop files anywhere to upload', 'brightcove' ); ?></h3>
 						<p class="upload-instructions drop-instructions"><?php _ex( 'or', 'Uploader: Drop files here - or - Select Files' ); ?></p>
-						<a href="#" id="brightcove-select-files-button" class="browser button button-hero"><?php _e( 'Select Files' ); ?></a>
+						<a href="#" id="brightcove-select-files-button" class="browser button button-hero"><?php esc_html_e( 'Select Files', 'brightcove' ); ?></a>
 					</div>
 
 					<div class="upload-inline-status"></div>
@@ -301,8 +301,8 @@ class BC_Admin_Templates {
 						?>
 
 						<p class="max-upload-size">
-						<?php 
-						printf( __( 'Maximum upload file size: %s.' ), esc_html( size_format( $max_upload_size ) ) ); ?><br> 
+						<?php
+						printf( esc_html__( 'Maximum upload file size: ', 'brightcove' ) . esc_html( size_format( $max_upload_size ) ) . '.' ); ?><br>
 						<?php
 						_e( 'Please reference the readme.txt file of this plugin for further information on upload file size limits.', 'brightcove' );
 						?>
@@ -335,12 +335,12 @@ class BC_Admin_Templates {
 						<div class="video-count">
 							<# if ( 'EXPLICIT' === data.type && data.video_ids ) { #>
 								<# if ( 1 === data.video_ids.length ) { #>
-									<span>1 <?php _e( 'Video', 'brightcove' ); ?></span>
+									<span>1 <?php esc_html_e( 'Video', 'brightcove' ); ?></span>
 								<# } else { #>
-									<span>{{ data.video_ids.length }} <?php _e( 'Videos', 'brightcove' ); ?></span>
+									<span>{{ data.video_ids.length }} <?php esc_html_e( 'Videos', 'brightcove' ); ?></span>
 								<# } #>
 							<# } else { #>
-								<span class="brightcove-smart-playlist"><?php _e( 'Smart', 'brightcove' ); ?></span>
+								<span class="brightcove-smart-playlist"><?php esc_html_e( 'Smart', 'brightcove' ); ?></span>
 							<# } #>
 						</div>
 					<# } #>
@@ -352,8 +352,8 @@ class BC_Admin_Templates {
 					<# } #>
 				</div>
 				<div class="media-actions">
-					<a href="#" class="button media-button brightcove edit"><?php _e( 'Edit', 'brightcove' ); ?></a>
-					<a href="#" class="button media-button brightcove preview"><?php _e( 'Preview', 'brightcove' ); ?></a>
+					<a href="#" class="button media-button brightcove edit"><?php esc_html_e( 'Edit', 'brightcove' ); ?></a>
+					<a href="#" class="button media-button brightcove preview"><?php esc_html_e( 'Preview', 'brightcove' ); ?></a>
 				</div>
 			</div>
 		</script>
@@ -389,15 +389,15 @@ class BC_Admin_Templates {
 				</div>
 				<div class="video-info">
 					<span class="video-name">{{ data.name }}</span>
-					<div class="video-source"><span class="title"><?php _e( 'Source: ', 'brightcove' ); ?></span><span class="data">{{ data.account_name }}</span></div>
-					<div class="video-id"><span class="title"><?php _e( 'Video ID: ', 'brightcove' ); ?></span><span class="data">{{ data.id }}</span></div>
+					<div class="video-source"><span class="title"><?php esc_html_e( 'Source: ', 'brightcove' ); ?></span><span class="data">{{ data.account_name }}</span></div>
+					<div class="video-id"><span class="title"><?php esc_html_e( 'Video ID: ', 'brightcove' ); ?></span><span class="data">{{ data.id }}</span></div>
 				</div>
 				<div class="media-actions">
 					<# if ('preview' === data.detailsMode) { #>
-						<a href="#" class="button media-button brightcove back"><?php _e( 'Back', 'brightcove' ); ?></a>
+						<a href="#" class="button media-button brightcove back"><?php esc_html_e( 'Back', 'brightcove' ); ?></a>
 					<# } else { #>
-						<a href="#" class="button media-button brightcove edit"><?php _e( 'Edit', 'brightcove' ); ?></a>
-						<a href="#" class="button media-button brightcove preview"><?php _e( 'Preview', 'brightcove' ); ?></a>
+						<a href="#" class="button media-button brightcove edit"><?php esc_html_e( 'Edit', 'brightcove' ); ?></a>
+						<a href="#" class="button media-button brightcove preview"><?php esc_html_e( 'Preview', 'brightcove' ); ?></a>
 					<# } #>
 				</div>
 			</div>
@@ -416,27 +416,27 @@ class BC_Admin_Templates {
                         <div class="detail-video-count">
 							<# if ( 'EXPLICIT' === data.type && data.video_ids ) { #>
 								<# if ( 1 === data.video_ids.length ) { #>
-									<span>1 <?php _e( 'Video', 'brightcove' ); ?></span>
+									<span>1 <?php esc_html_e( 'Video', 'brightcove' ); ?></span>
 								<# } else { #>
-									<span>{{ data.video_ids.length }} <?php _e( 'Videos', 'brightcove' ); ?></span>
+									<span>{{ data.video_ids.length }} <?php esc_html_e( 'Videos', 'brightcove' ); ?></span>
 								<# } #>
 							<# } else { #>
-								<span class="brightcove-smart-playlist"><?php _e( 'Smart', 'brightcove' ); ?></span>
+								<span class="brightcove-smart-playlist"><?php esc_html_e( 'Smart', 'brightcove' ); ?></span>
 							<# } #>
                         </div>
                     <# } #>
 				</div>
 				<div class="playlist-info">
 					<span class="playlist-name">{{ data.name }}</span>
-					<div class="playlist-id"><span class="title"><?php _e( 'Playlist ID: ', 'brightcove' ); ?></span><span class="data">{{ data.id }}</span></div>
-					<div class="account-name"><span class="title"><?php _e( 'Account Name: ', 'brightcove' ); ?></span><span class="data">{{ data.account_name }}</span></div>
-					<div class="created-date"><span class="title"><?php _e( 'Created At: ', 'brightcove' ); ?></span><span class="data">{{ data.created_at_readable }}</span></div>
-					<div class="updated-date"><span class="title"><?php _e( 'Updated At: ', 'brightcove' ); ?></span><span class="data">{{ data.updated_at_readable }}</span></div>
-					<div class="playlist-type"><span class="title"><?php _e( 'Playlist Type: ', 'brightcove' ); ?></span><span class="data">{{ data.type }}</span></div>
+					<div class="playlist-id"><span class="title"><?php esc_html_e( 'Playlist ID: ', 'brightcove' ); ?></span><span class="data">{{ data.id }}</span></div>
+					<div class="account-name"><span class="title"><?php esc_html_e( 'Account Name: ', 'brightcove' ); ?></span><span class="data">{{ data.account_name }}</span></div>
+					<div class="created-date"><span class="title"><?php esc_html_e( 'Created At: ', 'brightcove' ); ?></span><span class="data">{{ data.created_at_readable }}</span></div>
+					<div class="updated-date"><span class="title"><?php esc_html_e( 'Updated At: ', 'brightcove' ); ?></span><span class="data">{{ data.updated_at_readable }}</span></div>
+					<div class="playlist-type"><span class="title"><?php esc_html_e( 'Playlist Type: ', 'brightcove' ); ?></span><span class="data">{{ data.type }}</span></div>
 				</div>
 				<# if ('EXPLICIT' === data.type) { #>
 					<div class="media-actions">
-						<a href="#" class="button media-button brightcove edit"><?php _e( 'Edit', 'brightcove' ); ?></a>
+						<a href="#" class="button media-button brightcove edit"><?php esc_html_e( 'Edit', 'brightcove' ); ?></a>
 					</div>
 				<# } #>
 			</div>

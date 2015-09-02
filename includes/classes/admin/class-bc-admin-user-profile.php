@@ -20,16 +20,16 @@ class BC_Admin_User_Profile {
 
 		$accounts = $bc_accounts->get_sanitized_all_accounts();
 
-		$default_account = get_user_meta( $user->ID, '_brightcove_default_account_' . get_current_blog_id(), true );
+		$default_account = BC_Utility::get_user_meta( $user->ID, '_brightcove_default_account_' . get_current_blog_id(), true );
 		if( ! $default_account ) {
 			// If for some reason a user doesn't have a default account, fall back on the site default account
 			$default_account = get_option( '_brightcove_default_account' );
 		}
 		?>
-		<h3><img class="profile-brightcove-logo" src="<?php echo esc_url( BRIGHTCOVE_URL . 'images/admin/menu-icon.svg' ) ?>" /><?php _e( 'Brightcove Preferences', 'brightcove' ) ?></h3>
+		<h3><img class="profile-brightcove-logo" src="<?php echo esc_url( BRIGHTCOVE_URL . 'images/admin/menu-icon.svg' ) ?>" /><?php esc_html_e( 'Brightcove Preferences', 'brightcove' ) ?></h3>
 		<table class="form-table">
 			<tr>
-				<th scope="row"><?php _e( 'Default Source', 'brightcove' ) ?></th>
+				<th scope="row"><?php esc_html_e( 'Default Source', 'brightcove' ) ?></th>
 				<td>
 					<select name="bc-user-default-source">
 						<?php
@@ -60,11 +60,11 @@ class BC_Admin_User_Profile {
 		$user_id = BC_Utility::sanitize_id( $_POST['user_id'] );
 		$accounts = $bc_accounts->get_sanitized_all_accounts();
 		if( ! isset( $accounts[ $hash ] ) ) {
-			BC_Utility::admin_notice_messages( array( array( 'message' => __( 'The specified Source does not exist.', 'brightcove' ), 'type' => 'error' ) ) );
+			BC_Utility::admin_notice_messages( array( array( 'message' => esc_html__( 'The specified Source does not exist.', 'brightcove' ), 'type' => 'error' ) ) );
 			return false;
 		}
 
-		update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
+		BC_Utility::update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
 		return true;
 	}
 }

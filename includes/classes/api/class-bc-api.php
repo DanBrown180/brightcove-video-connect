@@ -240,7 +240,7 @@ abstract class BC_API {
 		$successful_response_codes = array( 200, 201, 202, 204 );
 
 		if ( ! in_array( wp_remote_retrieve_response_code( $request ), $successful_response_codes ) ) {
-			$message = __( 'An unspecified error has occurred.', 'brightcove' );
+			$message = esc_html__('An unspecified error has occurred.', 'brightcove' );
 			if ( isset( $body[0] ) && isset( $body[0]['error_code'] ) ) {
 
 				$message = $body[0]['error_code'];
@@ -277,10 +277,10 @@ abstract class BC_API {
 	/**
 	 * Increase the http timeout for API requests
 	 */
- 	 
+
 	public function increase_http_timeout( $timeout ) {
 		$timeout += 5;
-		return $timeout;		
+		return $timeout;
 	}
 
 	/**

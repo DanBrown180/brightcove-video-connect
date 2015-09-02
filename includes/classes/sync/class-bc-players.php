@@ -29,7 +29,7 @@ class BC_Players {
 	public function handle_initial_sync( $is_cli = false ) {
 
 		if ( true === $is_cli ) {
-			WP_CLI::line( __( 'Starting Player Sync', 'brightcove' ) );
+			WP_CLI::line( esc_html__('Starting Player Sync', 'brightcove' ) );
 		}
 
 		$players = $this->players_api->player_list();
@@ -40,7 +40,7 @@ class BC_Players {
 		}
 
 		if ( true === $is_cli ) {
-			WP_CLI::line( __( sprintf( 'There are %d players to sync for this account. Please be patient.', sizeof( $players ) ), 'brightcove' ) );
+			WP_CLI::line( esc_html__( sprintf( 'There are %d players to sync for this account. Please be patient.', sizeof( $players ) ), 'brightcove' ) );
 		}
 
 		$player_ids_to_keep = array(); // for deleting outdated players
@@ -58,7 +58,7 @@ class BC_Players {
 		BC_Utility::store_hash( 'players', $players, $this->cms_api->account_id );
 
 		if ( true === $is_cli ) {
-			WP_CLI::line( __( 'Player Sync Complete', 'brightcove' ) );
+			WP_CLI::line( esc_html__('Player Sync Complete', 'brightcove' ) );
 		}
 
 		return true;

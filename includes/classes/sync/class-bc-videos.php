@@ -388,14 +388,14 @@ class BC_Videos {
 
 		if ( !$post_id ) {
 
-			$error_message = __( 'The video has not been created in WordPress', 'brightcove' );
+			$error_message = esc_html__('The video has not been created in WordPress', 'brightcove' );
 			BC_Logging::log( sprintf( 'BC WORDPRESS ERROR: %s' ), $error_message );
 
 			return new WP_Error( 'post-not-created', $error_message );
 
 		}
 
-		BC_Logging::log( sprintf( __( 'BC WORDPRESS: Video with ID #%d has been created', 'brightcove' ), $post_id ) );
+		BC_Logging::log( sprintf( esc_html__( 'BC WORDPRESS: Video with ID #%d has been created', 'brightcove' ), $post_id ) );
 
 		if ( !empty( $video['tags'] ) ) {
 			wp_set_post_terms( $post_id, $video['tags'], 'brightcove_tags', false );

@@ -155,7 +155,7 @@ class BC_Accounts {
 
 		if ( true !== $is_valid_account ) {
 			if ( $cli ) {
-				return new WP_Error( 'brightcove-invalid-account', __( 'Account credentials are invalid. Please ensure you are using all the correct information from Brightcove Video Cloud Studio to secure a token.', 'brightcove' ) );
+				return new WP_Error( 'brightcove-invalid-account', esc_html__( 'Account credentials are invalid. Please ensure you are using all the correct information from Brightcove Video Cloud Studio to secure a token.', 'brightcove' ) );
 			} else {
 				return false;
 			}
@@ -173,7 +173,7 @@ class BC_Accounts {
 		) );
 
 		if ( $cli && false === $account_hash ) {
-			return new WP_Error( 'brightcove-account-exists', __( 'Unable to update this account via WP-CLI.', 'brightcove' ) );
+			return new WP_Error( 'brightcove-account-exists', esc_html__( 'Unable to update this account via WP-CLI.', 'brightcove' ) );
 		}
 
 		if ( $account_hash && ! $this->get_account_details_for_site() && 'default' === $set_default ) {
@@ -190,10 +190,10 @@ class BC_Accounts {
 
 		$this->set_current_account( $account_hash );
 		$all_accounts = $this->get_all_accounts();
-		//If this is the first account, make it the default		
+		//If this is the first account, make it the default
 		if(count($all_accounts) <=1 ){
 			update_option( '_brightcove_default_account', $account_hash );
-		}				
+		}
 		$notifications = new BC_Notifications();
 		$notifications->subscribe_if_not_subscribed();
 
@@ -234,7 +234,7 @@ class BC_Accounts {
 	public function delete_account( $hash ) {
 
 		if ( ! BC_Accounts::get_account_by_hash( $hash ) ) {
-			return new WP_Error( 'brightcove-account-not-configured', __( 'The specified Brightcove Account has not been configured in WordPress', 'brightcove' ) );
+			return new WP_Error( 'brightcove-account-not-configured', esc_html__( 'The specified Brightcove Account has not been configured in WordPress', 'brightcove' ) );
 		}
 
 		$all_accounts = $this->get_all_accounts();
@@ -270,7 +270,7 @@ class BC_Accounts {
 		if ( $hash === get_option( '_brightcove_default_account' ) ) {
 
 			if ( ! empty( $all_accounts ) ) {
-				
+
 				$remaining_accounts = $all_accounts;
 			    // The deleted account was the default. Now set the default to be the first account in the remaining list, if there is a remaining account
 			    $default_account = array_shift( $remaining_accounts );
@@ -322,7 +322,7 @@ class BC_Accounts {
 			return false; // Permissions violation.
 		}
 
-		$hash = get_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), true );
+		$hash = BC_Utility::get_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), true );
 
 		if ( '' !== $hash ) {
 			$account = $this->get_account_by_hash( $hash );
@@ -354,7 +354,7 @@ class BC_Accounts {
 		$account = $this->get_account_by_hash( $hash );
 
 		if ( $account ) {
-			update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
+			BC_Utility::update_user_meta( $user_id, '_brightcove_default_account_' . get_current_blog_id(), $hash );
 			$this->current_account = $account;
 		}
 
@@ -529,7 +529,7 @@ class BC_Accounts {
 		// Create a video
 		$video_creation = $cms_api->video_add( 'Brightcove WordPress plugin test video' );
 		if ( ! $video_creation || is_wp_error( $video_creation ) ) {
-			$errors[] = new WP_Error( 'account-can-not-create-videos', __( 'Supplied account can not create videos', 'brightcove' ) );
+			$errors[] = new WP_Error( 'account-can-not-create-videos', esc_html__( 'Supplied account can not create videos', 'brightcove' ) );
 		} else {
 			$video_id = $video_creation['id'];
 
@@ -537,13 +537,13 @@ class BC_Accounts {
 			$renamed_title = 'Brightcove WordPress plugin test video renamed';
 			$video_renamed = $cms_api->video_update( $video_id, array( 'name' => $renamed_title ) );
 			if ( ! $video_renamed || $renamed_title !== $video_renamed['name'] ) {
-				$errors[] = new WP_Error( 'account-can-not-update-videos', __( 'Supplied account can not update videos', 'brightcove' ) );
+				$errors[] = new WP_Error( 'account-can-not-update-videos', esc_html__( 'Supplied account can not update videos', 'brightcove' ) );
 			}
 		}
 
 		$playlist = $cms_api->playlist_add( 'Brightcove WordPress plugin test playlist' );
 		if ( ! $playlist || ! is_array( $playlist ) || ! isset( $playlist['id'] ) ) {
-			$errors[] = new WP_Error( 'account-can-not-create-playlists', __( 'Supplied account cannot create playlists', 'brightcove' ) );
+			$errors[] = new WP_Error( 'account-can-not-create-playlists', esc_html__( 'Supplied account cannot create playlists', 'brightcove' ) );
 		} else {
 			// For use through other Playlist test API calls.
 			$playlist_id = $playlist['id'];
@@ -552,18 +552,18 @@ class BC_Accounts {
 			$updated_playlist = $cms_api->playlist_update( $playlist_id, $update_data );
 
 			if ( ! $updated_playlist || ! is_array( $updated_playlist ) || ! isset( $updated_playlist['id'] ) ) {
-				$errors[] = new WP_Error( 'account-can-not-update-playlists', __( 'Supplied account cannot modify playlists', 'brightcove' ) );
+				$errors[] = new WP_Error( 'account-can-not-update-playlists', esc_html__( 'Supplied account cannot modify playlists', 'brightcove' ) );
 			}
 
 			// Delete a playlist
 			if ( ! $cms_api->playlist_delete( $playlist_id ) ) {
-				$errors[] = new WP_Error( 'account-can-not-delete-playlists', __( 'Supplied playlist cannot delete playlists', 'brightcove' ) );
+				$errors[] = new WP_Error( 'account-can-not-delete-playlists', esc_html__( 'Supplied playlist cannot delete playlists', 'brightcove' ) );
 			}
 		}
 
 		// Delete a video
 		if ( ! $cms_api->video_delete( $video_id ) ) {
-			$errors[] = new WP_Error( 'account-can-not-delete-videos', __( 'Supplied account can not delete videos', 'brightcove' ) );
+			$errors[] = new WP_Error( 'account-can-not-delete-videos', esc_html__( 'Supplied account can not delete videos', 'brightcove' ) );
 		}
 
 		$player_api = new BC_Player_Management_API( $this );
@@ -571,7 +571,7 @@ class BC_Accounts {
 		// Fetch all players
 		$players = $player_api->player_list();
 		if ( is_wp_error( $players ) || ! is_array( $players['items'] ) ) {
-			$errors[] = new WP_Error( 'account-can-not-fetch-players', __( 'Supplied account can not fetch players', 'brightcove' ) );
+			$errors[] = new WP_Error( 'account-can-not-fetch-players', esc_html__( 'Supplied account can not fetch players', 'brightcove' ) );
 		}
 
 		return $errors;
@@ -602,7 +602,7 @@ class BC_Accounts {
 		$errors = array();
 
 		if ( ! $valid_credentials ) {
-			$errors[] = new WP_Error( 'account-invalid-credentials', __( 'Invalid account credentials', 'brightcove' ) );
+			$errors[] = new WP_Error( 'account-invalid-credentials', esc_html__( 'Invalid account credentials', 'brightcove' ) );
 		} else if ( $check_access ) {
 			$errors = array_merge( $errors, $this->check_permissions_level() );
 		}

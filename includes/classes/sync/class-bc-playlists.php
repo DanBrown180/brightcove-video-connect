@@ -72,7 +72,7 @@ class BC_Playlists {
 				return true;
 			}
 
-			$error_message = __( 'The Playlist failed to sync with WordPress', 'brightcove' );
+			$error_message = esc_html__('The Playlist failed to sync with WordPress', 'brightcove' );
 			BC_Logging::log( sprintf( 'WORDPRESS PLAYLIST SYNC: %s', $error_message ) );
 
 			return new WP_Error( 'playlist-wp-sync-error', $error_message );
@@ -184,7 +184,7 @@ class BC_Playlists {
 	public function handle_initial_sync( $is_cli = false ) {
 
 		if ( true === $is_cli ) {
-			WP_CLI::line( __( 'Starting Playlist Sync', 'brightcove' ) );
+			WP_CLI::line( esc_html__('Starting Playlist Sync', 'brightcove' ) );
 		}
 
 		global $bc_accounts;
@@ -196,7 +196,7 @@ class BC_Playlists {
 		}
 
 		if ( true === $is_cli ) {
-			WP_CLI::line( __( sprintf( 'There are %d playlists to sync for this account. Please be patient.', sizeof( $playlists ) ), 'brightcove' ) );
+			WP_CLI::line( esc_html__( sprintf( 'There are %d playlists to sync for this account. Please be patient.', sizeof( $playlists ) ), 'brightcove' ) );
 		}
 
 		$playlists = $this->sort_api_response( $playlists );
@@ -223,7 +223,7 @@ class BC_Playlists {
 		BC_Utility::store_hash( 'playlists', $playlists, $this->cms_api->account_id );
 
 		if ( true === $is_cli ) {
-			WP_CLI::line( __( 'Playlist Sync Complete', 'brightcove' ) );
+			WP_CLI::line( esc_html__('Playlist Sync Complete', 'brightcove' ) );
 		}
 
 		return true;

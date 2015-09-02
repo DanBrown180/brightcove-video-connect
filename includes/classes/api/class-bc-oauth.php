@@ -98,7 +98,7 @@ class BC_Oauth_API {
 			} else {
 
 				if ( ! $retry ) {
-					return new WP_Error( 'oauth_access_token_response_failure', sprintf( __( 'oAuth API did not return us an access token', 'brightcove' ) ) );
+					return new WP_Error( 'oauth_access_token_response_failure', sprintf( esc_html__( 'oAuth API did not return us an access token', 'brightcove' ) ) );
 				}
 
 				return $this->_request_access_token( $force_new_token, false );

@@ -22,34 +22,43 @@ class BC_Logging {
 			return false;
 
 		if( !ctype_print( $message ) )
-			return new WP_Error( 'log-invalid-contents', __( 'Binary content is not supported by the Logging mechanism.', 'brightcove' ) );
+			return new WP_Error( 'log-invalid-contents', esc_html__( 'Binary content is not supported by the Logging mechanism.', 'brightcove' ) );
+
+		$is_vip = ( defined( 'WPCOM_IS_VIP_ENV' ) && WPCOM_IS_VIP_ENV ) ? true : false;
 
 		switch( $mode ) {
 
 			case 'file'     :
 				if( !$file ) {
+					if( ! $is_vip ) {
 					error_log( $message );
+					}
 
-					return new WP_Error( 'log-destination-file-not-set', __( 'You must provide a file path and name to use <pre>file</pre> mode. Writing to the syslog instead.', 'brightcove' ) );
+					return new WP_Error( 'log-destination-file-not-set', esc_html__( 'You must provide a file path and name to use <pre>file</pre> mode. Writing to the syslog instead.', 'brightcove' ) );
 				}
 
 				if( !is_file( $file ) ) {
+					if( ! $is_vip ) {
 					error_log( $message );
-
+					}
 					return new WP_Error( 'log-destination-file-is-invalid', sprintf( __( 'The file specified, <pre>%s</pre> does not exist. Writing to the syslog instead.', 'brightcove' ), $file ) );
 				}
 
 				if( !is_writable( $file ) ) {
+					if( ! $is_vip ) {
 					error_log( $message );
+					}
 
-					return new WP_Error( 'log-destination-file-unwritable', sprintf( __( 'The file specified, <pre>%s</pre> is not writable byt the web server. Writing to the syslog instead.', 'brightcove' ), $file ) );
+					return new WP_Error( 'log-destination-file-unwritable', sprintf( esc_html__( 'The file specified, <pre>%s</pre> is not writable byt the web server. Writing to the syslog instead.', 'brightcove' ), $file ) );
 				}
 
 				error_log( $message, 3, $file );
 				break;
 			case 'syslog'   :
 			default         :
+				if( ! $is_vip ) {
 				error_log( $message );
+				}
 				break;
 		}
 		return true;

@@ -23,7 +23,7 @@ class BC_Admin_Settings_Page {
 			BC_Utility::admin_notice_messages( array( array( 'message' => $delete_account->get_error_message(), 'type' => 'error' ) ) );
 		}
 
-		BC_Utility::admin_notice_messages( array( array( 'message' => __( 'Source Deleted', 'brightcove' ), 'type' => 'updated' ) ) );
+		BC_Utility::admin_notice_messages( array( array( 'message' => esc_html__( 'Source Deleted', 'brightcove' ), 'type' => 'updated' ) ) );
 	}
 
 	/**
@@ -34,16 +34,16 @@ class BC_Admin_Settings_Page {
 
 		<div class="wrap">
 
-			<h2><img class="bc-page-icon" src="<?php echo esc_url( BRIGHTCOVE_URL . 'images/admin/menu-icon.svg' ); ?>"> <?php _e( 'Brightcove Settings', 'brightcove' ); ?></h2>
+			<h2><img class="bc-page-icon" src="<?php echo esc_url( BRIGHTCOVE_URL . 'images/admin/menu-icon.svg' ); ?>"> <?php esc_html_e( 'Brightcove Settings', 'brightcove' ); ?></h2>
 
-			<h3 class="title"><?php _e( 'Sources', 'brightcove' ); ?></h3>
+			<h3 class="title"><?php esc_html__( 'Sources', 'brightcove' ); ?></h3>
 
 			<table class="wp-list-table widefat">
 				<thead>
 				<tr>
-					<th><?php _e( 'Source Name', 'brightcove' ) ?></th>
-					<th><?php _e( 'Account ID', 'brightcove' ) ?></th>
-					<th><?php _e( 'Client ID', 'brightcove' ) ?></th>
+					<th><?php esc_html_e( 'Source Name', 'brightcove' ) ?></th>
+					<th><?php esc_html_e( 'Account ID', 'brightcove' ) ?></th>
+					<th><?php esc_html_e( 'Client ID', 'brightcove' ) ?></th>
 				</tr>
 				</thead>
 				<tbody>
@@ -54,7 +54,7 @@ class BC_Admin_Settings_Page {
 			</table>
 
 			<p>
-				<a href="<?php echo esc_url( admin_url( 'admin.php?page=page-brightcove-edit-source') ); ?>" class="button action"><?php _e( 'Add Source', 'brightcove' ); ?></a>
+				<a href="<?php echo esc_url( admin_url( 'admin.php?page=page-brightcove-edit-source') ); ?>" class="button action"><?php esc_html_e( 'Add Source', 'brightcove' ); ?></a>
 			</p>
 
 		</div>
@@ -72,11 +72,13 @@ class BC_Admin_Settings_Page {
 		$actions = array();
 
 		if( current_user_can( 'brightcove_manipulate_accounts' ) ) {
-			$actions[ 'edit' ] = sprintf( '<a href="%1$s" class="brightcove-action-links brightcove-action-edit-source" title="%2$s">%2$s</a>', admin_url( sprintf( 'admin.php?page=page-brightcove-edit-source&account=%s', $hash ) ), __( 'Edit Source', 'brightcove' ) );
+			$actions[ 'edit' ] = sprintf( '<a href="%1$s" class="brightcove-action-links brightcove-action-edit-source" title="%2$s">%2$s</a>', admin_url( sprintf( 'admin.php?page=page-brightcove-edit-source&account=%s', $hash ) ), esc_html__( 'Edit Source', 'brightcove' ) );
 			$actions[ 'delete' ] = sprintf( '<a href="%1$s" class="brightcove-action-links brightcove-action-delete-source" title="%2$s" data-alert-message="%3$s">%2$s</a>',
-                admin_url( sprintf( 'admin.php?page=brightcove-sources&action=delete&account=%1$s&_wpnonce=%2$s', $hash, wp_create_nonce( 'bc_delete_source_id_' . $hash ) ) ),
-                __( 'Delete Source', 'brightcove' ),
-                __( 'By deleting this source, WordPress will no longer have access to associated videos and playlists. Your content remains in Brightcove.', 'brightcove' )
+				esc_url(
+					admin_url( sprintf( 'admin.php?page=brightcove-sources&action=delete&account=%1$s&_wpnonce=%2$s', $hash, wp_create_nonce( 'bc_delete_source_id_' . $hash ) ) )
+				),
+				esc_html__( 'Delete Source', 'brightcove' ),
+				esc_html__( 'By deleting this source, WordPress will no longer have access to associated videos and playlists. Your content remains in Brightcove.', 'brightcove' )
             );
 		}
 
@@ -124,11 +126,11 @@ class BC_Admin_Settings_Page {
 	public function render_source_row( $hash, $source ) {
 
 		$default_account = get_option( '_brightcove_default_account' );
-		$default_account_text = ( $default_account === $hash ) ? '<strong> &mdash; ' . __( 'Default', 'brightcove' ) . '<strong>' : false;
+		$default_account_text = ( $default_account === $hash ) ? '<strong> &mdash; ' . esc_html__( 'Default', 'brightcove' ) . '</strong>' : false;
 
 		$html = sprintf( '<tr class="source source-%s">', esc_attr( $source['account_id'] ) );
 		$html .= '<th>';
-		$html .= '<strong>' . esc_html( $source['account_name'] ) . '</strong>' . $default_account_text;
+		$html .= '<strong>' . esc_html( $source['account_name'] ) . '</strong>' . $default_account_text; // escaped above
 		$html .= $this->action_links( $hash );
 		$html .= '</th>';
 		$html .= '<td>';
@@ -150,7 +152,7 @@ class BC_Admin_Settings_Page {
 	 */
 	public function render_no_source_row() {
 		$html = '<tr class="source no-sources">';
-		$html .= '<td colspan="3">' . __( 'There are no sources defined. Add one below', 'brightcove' ) . '</td>';
+		$html .= '<td colspan="3">' . esc_html__( 'There are no sources defined. Add one below', 'brightcove' ) . '</td>';
 		$html .= '</tr>';
 
 		return $html;

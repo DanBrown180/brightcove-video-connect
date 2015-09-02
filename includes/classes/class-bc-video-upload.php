@@ -33,7 +33,7 @@ class BC_Video_Upload {
 		$account = $bc_accounts->get_account_by_hash( $account_hash );
 
 		if ( ! $account) {
-			return new WP_Error( 'invalid-account', __( 'Invalid account', 'brightcove' ) );
+			return new WP_Error( 'invalid-account', esc_html__( 'Invalid account', 'brightcove' ) );
 		}
 
 		if ( isset( $files ) && isset( $files['file']) ) {
@@ -41,7 +41,7 @@ class BC_Video_Upload {
 
 			// check that file is supported by WP
 			if( $this->check_allowed_file( $files['file'] ) === false ) {
-				$error_message = __( 'Video type is not supported', 'brightcove' );
+				$error_message = esc_html__( 'Video type is not supported', 'brightcove' );
 				BC_Logging::log( sprintf( 'VIDEO UPLOAD: %s', $error_message ) );
 				return new WP_Error( 'video_upload_error', $error_message );
 			}
@@ -49,7 +49,7 @@ class BC_Video_Upload {
 			$uploaded = wp_handle_upload( $files['file'], array( 'test_form' => false ) );
 
 			if ( isset( $uploaded[ 'error' ] ) ) {
-				$error_message = __( $uploaded[ 'error' ], 'brightcove' );
+				$error_message = esc_html__( $uploaded[ 'error' ], 'brightcove' );
 				BC_Logging::log( sprintf( 'VIDEO UPLOAD ERROR: %s', $error_message ) );
 				return new WP_Error( 'video_upload_error', $error_message );
 			} else {
@@ -67,7 +67,7 @@ class BC_Video_Upload {
 			$video_id_creation_result = $cms_api->video_add( $name, $data );
 
 			if ( false === $video_id_creation_result ) {
-				return new WP_Error( __('Unable to create a video on brightcove side', 'brightcove' ) );
+				return new WP_Error( esc_html__('Unable to create a video on brightcove side', 'brightcove' ) );
 			}
 
 			if ( is_wp_error( $video_id_creation_result ) ) {

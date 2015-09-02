@@ -21,16 +21,28 @@ class BC_Utility {
         return is_string( $client_secret ) ?  preg_replace( '/[^a-z0-9_-]/i', '', $client_secret ) : '';
     }
 
+    /**
+     * Check if the current user can work with Brightcove videos
+     * @return boolean current_user_can_brightcove
+     */
+    public static function current_user_can_brightcove() {
+    	if ( is_admin() && ( current_user_can( 'brightcove_manipulate_videos' ) || is_super_admin() ) ) {
+    		return true;
+    	} else {
+    		return false;
+    	}
+    }
+
 	/**
 	 * @param $numeric_string
 	 * @return string containing integers only
 	 */
 	public static function sanitize_id( $numeric_string ) {
-		return is_string( $numeric_string) ?  preg_replace( '/\D/', '', $numeric_string ) : "";
+		return is_string( $numeric_string) ?  sanitize_text_field( preg_replace( '/\D/', '', $numeric_string ) ) : "";
 	}
 
 	public static function sanitize_subscription_id( $subscription_id ) {
-		return is_string( $subscription_id) ?  preg_replace( '/[^0-9a-f-]/', '', $subscription_id ) : "";
+		return is_string( $subscription_id) ?  sanitize_text_field( preg_replace( '/[^0-9a-f-]/', '', $subscription_id ) ) : "";
 	}
 
 	/**
@@ -79,8 +91,14 @@ class BC_Utility {
 				$account_id = BC_Utility::sanitize_id( $account_id );
 			}
 		}
-		$key = "%transient%brightcove_req_{$account_id}%";
-		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '$key';" );
+
+		$keys = self::get_requests_transient_key( $account_id );
+		if ( is_array( $keys ) ) {
+			foreach( $keys as $key ) {
+				self::delete_transient_key( $key );
+				delete_transient( $key );
+			}
+		}
 	}
 
 	/**
@@ -459,5 +477,190 @@ class BC_Utility {
 			);
 
 		return array_merge( $links, $bc_settings_page );
+	}
+
+	/**
+	 * Wrapper utility method for using WordPress.com get_user_attribute() when available. Falls back to get_user_meta()
+	 *
+	 * @param $user_id
+	 * @param $meta_key
+	 * @param bool|true $single
+	 *
+	 * @return mixed
+	 */
+	public static function get_user_meta( $user_id, $meta_key, $single = true ) {
+		if( function_exists( 'get_user_attribute' ) ) {
+			$meta_value = get_user_attribute( $user_id, $meta_key );
+		} else {
+			$meta_value = get_user_meta( $user_id, $meta_key, $single );
+		}
+
+		return $meta_value;
+	}
+
+	/**
+	 * Wrapper utility to for using WordPress.com update_user_attribute() when available. Falls back to update_user_meta()
+	 *
+	 * @param $user_id
+	 * @param $meta_key
+	 * @param $meta_value
+	 *
+	 * @return mixed
+	 */
+	public static function update_user_meta( $user_id, $meta_key, $meta_value ) {
+		if( function_exists( 'update_user_attribute' ) ) {
+			$result = update_user_attribute( $user_id, $meta_key, $meta_value );
+		} else {
+			$result = update_user_meta( $user_id, $meta_key, $meta_value );
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Wrapper utility for using WordPress.com delete_user_attribute() when available. Falls back to delete_user_meta()
+	 *
+	 * @param $user_id
+	 * @param $meta_key
+	 * @param $meta_value
+	 *
+	 * @return mixed
+	 */
+	public static function delete_user_meta( $user_id, $meta_key, $meta_value ) {
+		if( function_exists( 'delete_user_attribute' ) ) {
+			$result = delete_user_attribute( $user_id, $meta_key, $meta_value );
+		} else {
+			$result = delete_user_meta( $user_id, $meta_key, $meta_value );
+		}
+
+		return $result;
+	}
+
+	public static function activate() {
+		update_option( '_brightcove_plugin_activated', true, 'no' );
+		flush_rewrite_rules();
+	}
+
+	public static function deactivate() {
+		require_once( BRIGHTCOVE_PATH . 'includes/classes/class-bc-accounts.php' );
+
+		$bc_accounts = new BC_Accounts();
+
+		$accounts = $bc_accounts->get_sanitized_all_accounts();
+
+		foreach ( $accounts as $account => $account_data ) {
+
+			$bc_accounts->set_current_account( $account );
+
+			$account_hash = $bc_accounts->get_account_hash();
+
+			delete_transient( 'brightcove_oauth_access_token_' . $account_hash );
+			self::delete_transient_key( 'brightcove_oauth_access_token_' . $account_hash );
+
+			$bc_accounts->restore_default_account();
+
+		}
+
+		delete_transient( 'brightcove_sync_playlists' );
+		delete_transient( 'brightcove_sync_videos' );
+		self::delete_transient_key( 'brighcove_sync_playlists' );
+		self::delete_transient_key( 'brightcove_sync_videos' );
+		delete_option( '_brightcove_plugin_activated' );
+	}
+
+	public static function uninstall_plugin() {
+
+		if( ( defined( 'WPCOM_IS_VIP_ENV' ) && WPCOM_IS_VIP_ENV ) && ( ! defined( 'WP_CLI' ) || ! WP_CLI ) ) {
+			return false;
+		}
+
+		global $wpdb;
+
+		//Delete static options
+		delete_option( '_brightcove_pending_videos' );
+		delete_option( '_brightcove_salt' );
+		delete_option( '_brightcove_accounts' );
+		delete_option( '_brightcove_default_account' );
+
+		//Delete synced video data
+		$wpdb->query( "DELETE FROM $wpdb->postmeta WHERE meta_key LIKE '_brightcove%';" );
+		$wpdb->query( "DELETE FROM $wpdb->posts WHERE post_type = 'brightcove-playlist';" );
+		$wpdb->query( "DELETE FROM $wpdb->posts WHERE post_type = 'brightcove-video';" );
+
+		//Delete variable options
+		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_brightcove%';" );
+		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_bc_player%';" );
+		$wpdb->query( "DELETE FROM $wpdb->options WHERE option_name LIKE '_notifications_subscribed_%';" );
+	}
+
+	public static function get_transient_keys() {
+		$transient_keys = get_option( '_bc_transient_keys' );
+		if ( ! is_array( $transient_keys ) ) {
+			update_option( '_bc_transient_keys', array() );
+			return array();
+		}
+		return $transient_keys;
+	}
+
+	/**
+	 * Takes a dynamically generated transient key and adds to list. We need to store these to unset them on cache purge
+	 * @param $key
+	 *
+	 * @return bool
+	 */
+	public static function add_transient_key( $key ) {
+
+		$transient_keys = self::get_transient_keys();
+		$transient_keys = ( ! $transient_keys ) ? array() : (array) $transient_keys;
+
+		if( in_array( $key, $transient_keys ) ) {
+			return true;
+		}
+
+		$transient_keys[] = sanitize_key( $key );
+
+		if( update_option( '_bc_transient_keys', $transient_keys ) ) {
+			return true;
+		} else {
+			return false;
+		}
+	}
+
+	/**
+	 * Takes a dynamically generated transient key and removes from the stored list.
+	 * @param $key
+	 *
+	 * @return bool
+	 */
+	public static function delete_transient_key( $key ) {
+		$transient_keys = self::get_transient_keys();
+		if( ! $transient_keys || ! is_array( $transient_keys ) ) {
+			return false;
+		}
+
+		if( ! array_search( $key, $transient_keys ) ) {
+			return false;
+		}
+
+		unset( $transient_keys[ $key ] );
+
+		update_option( '_bc_transient_keys', $transient_keys );
+	}
+
+	public static function get_requests_transient_key( $account_id ) {
+
+		$keys = array();
+
+		foreach( self::get_transient_keys() as $key ) {
+			$regex = '#(_transient__brightcove_req_' . $account_id . '[a-zA-Z0-9-]+)#';
+			preg_match( $regex, $key, $matches );
+			if( empty( $matches ) ) {
+				continue;
+			}
+
+			$keys[] = $matches[0];
+		}
+
+		return ( empty( $keys ) ) ? false : $keys;
 	}
 }

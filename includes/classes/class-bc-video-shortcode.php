@@ -72,7 +72,7 @@ class BC_Video_Shortcode {
 			$video_id
 		);
 		$html .= sprintf(
-			'<script src="http://players.brightcove.net/%s/%s_default/index.min.js"></script>',
+			'<script src="//players.brightcove.net/%s/%s_default/index.min.js"></script>',
 			$account_id,
 			$player_id
 		);
@@ -96,9 +96,9 @@ class BC_Video_Shortcode {
 		$video  = $videos->get_video_by_id( $video_id );
 
 		if ( ! $video ) {
-			return new WP_Error( 'brightcove-still-being-transcoded', __( 'No video was found', 'brightcove' ) );
+			return new WP_Error( 'brightcove-still-being-transcoded', esc_html__( 'No video was found', 'brightcove' ) );
 		}
-		
+
 		$is_transcoded = get_post_meta( $video->ID, '_brightcove_transcoded', true );
 
 		return '1' === $is_transcoded;
