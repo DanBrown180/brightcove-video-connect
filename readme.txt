@@ -5,7 +5,7 @@ Donate link:       https://supporters.eff.org/donate
 Tags:              brightcove, 10up, videos, video
 Requires at least: 4.2
 Tested up to:      4.4
-Stable tag:        1.0.6
+Stable tag:        1.0.7
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -191,6 +191,9 @@ Sample Video
 http://sample-videos.com/
 
 == Changelog ==
+
+= 1.0.7 =
+* Fix: Fixed the edit button for playlists
 
 = 1.0.6 =
 * Fix: JavaScript has been greatly cleaned up and should no longer conflict on the post editor or other screens.

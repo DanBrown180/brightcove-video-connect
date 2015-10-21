@@ -1,4 +1,4 @@
-    var VideoEditView = BrightcoveView.extend({
+    var PlaylistEditView = BrightcoveView.extend({
         tagName: 'div',
         className: 'playlist-edit brightcove attachment-details',
         template: wp.template('brightcove-playlist-edit'),

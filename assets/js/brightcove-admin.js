@@ -758,7 +758,7 @@ var MediaModel = Backbone.Model.extend({
     render: function(a) {
         a = this.model.toJSON(), this.$el.html(this.template(a));
     }
-}), VideoEditView = BrightcoveView.extend({
+}), PlaylistEditView = BrightcoveView.extend({
     tagName: "div",
     className: "playlist-edit brightcove attachment-details",
     template: wp.template("brightcove-playlist-edit"),

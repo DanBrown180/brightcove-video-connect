@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Brightcove Video Connect 1.0.5\n"
+"Project-Id-Version: Brightcove Video Connect 1.0.6\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/brightcove-video-connect\n"
-"POT-Creation-Date: 2015-10-21 13:49:30+00:00\n"
+"POT-Creation-Date: 2015-10-21 20:34:22+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -542,15 +542,15 @@ msgid ""
 "again."
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:288
+#: includes/classes/class-bc-setup.php:291
 msgid "Please configure Brightcove settings from"
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:290
+#: includes/classes/class-bc-setup.php:293
 msgid "here"
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:312
+#: includes/classes/class-bc-setup.php:315
 msgid ""
 "<div class=\"error\"><p><strong>Brightcove Video Cloud Enhanced</strong> "
 "has been <strong>deactivated</strong> because it's incompatibale with "
