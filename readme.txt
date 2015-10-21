@@ -1,11 +1,11 @@
 === Brightcove Video Connect ===
 
-Contributors:      10up, ivankk, technosailor, ChrisWiegman, tott, eduardmaghakyan, mattonomics, phoenixfireball, karinedo, foobuilder, helen, tlovett1, jonathantneal, brightcove
+Contributors:      10up, ivankk, technosailor, ChrisWiegman, tott, eduardmaghakyan, mattonomics, phoenixfireball, karinedo, foobuilder, helen, tlovett1, jonathantneal, brightcove, adamsilverstein
 Donate link:       https://supporters.eff.org/donate
 Tags:              brightcove, 10up, videos, video
 Requires at least: 4.2
-Tested up to:      4.3
-Stable tag:        1.0.5
+Tested up to:      4.4
+Stable tag:        1.0.6
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,9 @@ http://sample-videos.com/
 
 == Changelog ==
 
+= 1.0.6 =
+* Fix: JavaScript has been greatly cleaned up and should no longer conflict on the post editor or other screens.
+
 = 1.0.5 =
 * Refactored and cleaned up to meet WordPress VIP guidelines.
 
@@ -212,6 +215,9 @@ http://sample-videos.com/
 * First release
 
 == Upgrade Notice ==
+
+= 1.0.6 =
+1.0.6 is a major bugfix and is recommended for all users
 
 = 1.0.0 =
 First Release
