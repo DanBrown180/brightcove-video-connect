@@ -162,7 +162,12 @@ class BC_Players {
 		else {
 			// Delete players that may be set but aren't playlist-enabled
 			if( is_array( $players) && ! in_array( $player['id'], $players ) ) {
-				unset( $players[array_search( $player['id'], $players)] );
+				$player_key = array_search( $player['id'], $players );
+				if ( false === $player_key ) {
+
+				} else {
+					unset( $players[$player_key] );
+				}
 			}
 		}
 

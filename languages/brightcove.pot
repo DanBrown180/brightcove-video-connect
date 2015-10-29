@@ -2,10 +2,10 @@
 # This file is distributed under the GPLv2+.
 msgid ""
 msgstr ""
-"Project-Id-Version: Brightcove Video Connect 1.0.6\n"
+"Project-Id-Version: Brightcove Video Connect 1.0.8\n"
 "Report-Msgid-Bugs-To: "
 "https://wordpress.org/support/plugin/brightcove-video-connect\n"
-"POT-Creation-Date: 2015-10-21 20:34:22+00:00\n"
+"POT-Creation-Date: 2015-10-29 14:17:43+00:00\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
@@ -512,45 +512,45 @@ msgid ""
 "Writing to the syslog instead."
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:104
+#: includes/classes/class-bc-setup.php:109
 msgid "Brightcove Media"
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:166
+#: includes/classes/class-bc-setup.php:171
 msgid "Allowed Files"
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:176
+#: includes/classes/class-bc-setup.php:181
 msgid ""
 "Deleting this video will prevent it from showing in any existing posts. Are "
 "you sure you want to delete?"
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:177
+#: includes/classes/class-bc-setup.php:182
 msgid ""
 "We are currently performing a sync of your new Brightcove source, you may "
 "not see all videos and playlists until that is complete."
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:178
+#: includes/classes/class-bc-setup.php:183
 msgid "Successfully uploaded file with name %%s%%."
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:179
+#: includes/classes/class-bc-setup.php:184
 msgid ""
 "We were unable to upload the file with name %%s%% Please try reuploading it "
 "again."
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:291
+#: includes/classes/class-bc-setup.php:296
 msgid "Please configure Brightcove settings from"
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:293
+#: includes/classes/class-bc-setup.php:298
 msgid "here"
 msgstr ""
 
-#: includes/classes/class-bc-setup.php:315
+#: includes/classes/class-bc-setup.php:320
 msgid ""
 "<div class=\"error\"><p><strong>Brightcove Video Cloud Enhanced</strong> "
 "has been <strong>deactivated</strong> because it's incompatibale with "

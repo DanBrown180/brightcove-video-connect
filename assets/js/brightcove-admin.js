@@ -308,7 +308,7 @@ var MediaModel = Backbone.Model.extend({
             this.add(new UploadModel(a));
         }, this);
     }
-}), Upload = Backbone.Model.extend({
+}), UploadModel = Backbone.Model.extend({
     initialize: function(a) {},
     humanReadableSize: function() {
         var a = this.get("size");
@@ -484,13 +484,14 @@ var MediaModel = Backbone.Model.extend({
             this.model.set("mode", "manager"), this.render();
         }), this.listenTo(wpbc.broadcast, "change:emptyPlaylists", function(a) {
             var b = this.model.get("media-collection-view");
-            _.each(b.collection.models, function(b) {
-                !b.get("video_ids").length && b && b.view && b.view.$el && (a ? b.view.$el.hide() : b.view.$el.show());
+            this.model.set("mode", "manager"), _.each(b.collection.models, function(b) {
+                "undefined" != typeof b.get("video_ids") && 1 <= b.get("video_ids").length && b && b.view && b.view.$el || (a ? b.view.$el.hide() : b.view.$el.show());
             });
         }), this.listenTo(wpbc.broadcast, "delete:successful", function(a) {
             this.startGridView(), this.message(a, "success");
         }), this.listenTo(wpbc.broadcast, "change:activeAccount", function(a) {
-            this.clearPreview(), this.model.set("activeAccount", a);
+            this.clearPreview(), this.model.set("activeAccount", a), this.model.set("mode", "manager"), 
+            this.render();
         }), this.listenTo(wpbc.broadcast, "change:tag", function(a) {
             this.clearPreview(), this.model.set("tag", a);
         }), this.listenTo(wpbc.broadcast, "change:date", function(a) {
@@ -949,7 +950,7 @@ UploadWindowView = BrightcoveView.extend({
     }
 });
 
-var BrightcoveUpload = BrightcoveView.extend({
+var UploadView = BrightcoveView.extend({
     className: "brightcove-pending-upload",
     tagName: "tr",
     template: wp.template("brightcove-pending-upload"),

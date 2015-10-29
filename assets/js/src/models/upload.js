@@ -2,7 +2,7 @@
      * Model to contain pending upload
      */
 
-    var Upload = Backbone.Model.extend({
+    var UploadModel = Backbone.Model.extend({
 
         initialize: function(options) {
         },

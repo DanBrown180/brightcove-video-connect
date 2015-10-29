@@ -63,8 +63,9 @@
 
             this.listenTo(wpbc.broadcast, 'change:emptyPlaylists', function(emptyPlaylists) {
                 var mediaCollectionView = this.model.get('media-collection-view');
+                this.model.set('mode', 'manager');
                 _.each(mediaCollectionView.collection.models, function(mediaObject){
-                    if (!mediaObject.get('video_ids').length && mediaObject && mediaObject.view && mediaObject.view.$el) {
+                    if ( ! ( 'undefined' !== typeof mediaObject.get('video_ids') && 1 <= mediaObject.get('video_ids').length && mediaObject && mediaObject.view && mediaObject.view.$el ) ) {
                         if (emptyPlaylists) {
                             mediaObject.view.$el.hide();
                         } else {
@@ -82,6 +83,8 @@
             this.listenTo(wpbc.broadcast, 'change:activeAccount', function(accountId) {
                 this.clearPreview();
                 this.model.set('activeAccount', accountId);
+                this.model.set('mode', 'manager');
+                this.render();
             });
 
             this.listenTo(wpbc.broadcast, 'change:tag', function(tag) {

@@ -1,4 +1,4 @@
-    var BrightcoveUpload = BrightcoveView.extend({
+    var UploadView = BrightcoveView.extend({
         className: 'brightcove-pending-upload',
         tagName: 'tr',
         template: wp.template('brightcove-pending-upload'),

@@ -31,6 +31,11 @@ class BC_Setup {
 		new BC_Callbacks();
 		$bc_accounts = new BC_Accounts();
 
+		$players = get_option( '_bc_player_playlist_ids_' . $bc_accounts->get_account_id() );
+		if ( false === $players || ! is_array( $players ) ) {
+			define( 'BRIGHTCOVE_FORCE_SYNC', true );
+		}
+
 		// Load Administrative Resources
 		if ( BC_Utility::current_user_can_brightcove() ) {
 
