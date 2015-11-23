@@ -5,7 +5,7 @@ Donate link:       https://supporters.eff.org/donate
 Tags:              brightcove, 10up, videos, video
 Requires at least: 4.2
 Tested up to:      4.4
-Stable tag:        1.0.8
+Stable tag:        1.0.9
 License:           GPLv2 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -192,6 +192,11 @@ http://sample-videos.com/
 
 == Changelog ==
 
+= 1.0.9 =
+* Fix: Fixed fatal error on uninstall
+* Fix: Fixed smart playlist display
+* Fix: Remove an error that could happen when adding an acount with empty playlists
+
 = 1.0.8 =
 * Fix: Default sort for videos is now "newest first" for all screens listing videos.
 * Fix: Playlists now display properly
@@ -222,6 +227,9 @@ http://sample-videos.com/
 * First release
 
 == Upgrade Notice ==
+
+= 1.0.9 =
+1.0.9 is an important bugfix and is recommended for all users
 
 = 1.0.8 =
 1.0.8 is an important bugfix and is recommended for all users

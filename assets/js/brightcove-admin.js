@@ -327,7 +327,7 @@ var MediaModel = Backbone.Model.extend({
     insertShortcode: function() {
         if (this.model) {
             var a = this.model.get("id").replace(/\D/g, ""), b = this.model.get("account_id").replace(/\D/g, ""), c = this.model.get("width"), d = this.model.get("height"), e = "";
-            e = "videos" !== this.mediaType && this.model.get("video_ids") ? '[bc_playlist playlist_id="' + a + '" account_id="' + b + '" width="' + c + '" height="' + d + '"]' : '[bc_video video_id="' + a + '" account_id="' + b + '" player_id="default" width="' + c + '" height="' + d + '"]', 
+            e = "videos" === this.mediaType ? '[bc_video video_id="' + a + '" account_id="' + b + '" player_id="default" width="' + c + '" height="' + d + '"]' : '[bc_playlist playlist_id="' + a + '" account_id="' + b + '" width="' + c + '" height="' + d + '"]', 
             window.send_to_editor(e), wpbc.broadcast.trigger("close:modal");
         }
     }
@@ -532,8 +532,8 @@ var MediaModel = Backbone.Model.extend({
                 }), this.registerSubview(this.previewView), this.model.set("mode", "previewVideo"), 
                 this.render();
             } else /**
-                     * @todo: playlist preview view
-                     */
+					 * @todo: playlist preview view
+					 */
             this.model.set("mode", "editPlaylist");
         }), this.listenTo(wpbc.broadcast, "change:searchTerm", function(a) {
             this.clearPreview();
@@ -552,8 +552,8 @@ var MediaModel = Backbone.Model.extend({
         });
     },
     /**
-         * Clear the preview view and remove highlighted class from previous selected video.
-         */
+		 * Clear the preview view and remove highlighted class from previous selected video.
+		 */
     clearPreview: function() {
         this.detailsView instanceof MediaDetailsView && this.detailsView.remove(), this.model.get("media-collection-view").$el.find(".highlighted").removeClass("highlighted");
     },
