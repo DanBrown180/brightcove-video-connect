@@ -1,0 +1,13 @@
+{
+  "name": "danbrown180/brightcove-video-connect",
+  "description": "Box Fork of Brightcove",
+  "homepage": "https://github.com/DanBrown180/brightcove-video-connect",
+  "keywords": [
+    "wordpress"
+  ],
+  "license": "GPL-2.0+",
+  "type": "wordpress-plugin",
+  "require": {
+    "composer/installers": "~1.0"
+  }
+}
